@@ -91,8 +91,9 @@ public class PersonBuilder {
 
     /**
      * Sets the {@code Remark} of the {@code Person} that we are building.
+     * @throws IllegalValueException if the {@code remark} is invalid.
      */
-    public PersonBuilder withRemark(String remark) {
+    public PersonBuilder withRemark(String remark) throws IllegalValueException {
         this.person.setRemark(new Remark(remark));
         return this;
     }
