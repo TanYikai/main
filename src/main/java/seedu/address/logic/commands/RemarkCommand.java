@@ -50,6 +50,17 @@ public class RemarkCommand extends UndoableCommand {
         this.remark = remark;
     }
 
+    /**
+     * Generate the message in Strings for a successful Remark command
+     */
+    private String generateSuccessMessage(ReadOnlyPerson personToEdit) {
+        if (!remark.value.isEmpty()) {
+            return String.format(MESSAGE_ADD_REMARK_SUCCESS, personToEdit);
+        } else {
+            return String.format(MESSAGE_DELETE_REMARK_SUCCESS, personToEdit);
+        }
+    }
+
     @Override
     public CommandResult executeUndoableCommand() throws CommandException {
         List<ReadOnlyPerson> lastShownList = model.getFilteredPersonList();
@@ -72,14 +83,6 @@ public class RemarkCommand extends UndoableCommand {
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
         return new CommandResult(generateSuccessMessage(editedPerson));
-    }
-
-    private String generateSuccessMessage(ReadOnlyPerson personToEdit) {
-        if (!remark.value.isEmpty()) {
-            return String.format(MESSAGE_ADD_REMARK_SUCCESS, personToEdit);
-        } else {
-            return String.format(MESSAGE_DELETE_REMARK_SUCCESS, personToEdit);
-        }
     }
 
     @Override

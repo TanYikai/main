@@ -29,9 +29,18 @@ public class TypicalPersons {
 
     public static final Index INDEX_FIRST_PERSON = Index.fromOneBased(1);
     public static final Index INDEX_SECOND_PERSON = Index.fromOneBased(2);
-    public static final Index INDEX_THIRD_PERSON = Index.fromOneBased(3);
 
-    public static final ReadOnlyPerson ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE, HOON, IDA, AMY, BOB;
+    public static final ReadOnlyPerson ALICE;
+    public static final ReadOnlyPerson BENSON;
+    public static final ReadOnlyPerson CARL;
+    public static final ReadOnlyPerson DANIEL;
+    public static final ReadOnlyPerson ELLE;
+    public static final ReadOnlyPerson FIONA;
+    public static final ReadOnlyPerson GEORGE;
+    public static final ReadOnlyPerson HOON;
+    public static final ReadOnlyPerson IDA;
+    public static final ReadOnlyPerson AMY;
+    public static final ReadOnlyPerson BOB;
 
     static {
         try {
@@ -63,7 +72,8 @@ public class TypicalPersons {
             AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
                     .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).build();
             BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-                    .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+                    .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
+                    .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
                     .build();
         } catch (IllegalValueException e) {
             throw new AssertionError("Sample data cannot be invalid", e);
