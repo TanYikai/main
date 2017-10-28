@@ -27,6 +27,7 @@ public class TypicalPersons {
 
     public static final Index INDEX_FIRST_PERSON = Index.fromOneBased(1);
     public static final Index INDEX_SECOND_PERSON = Index.fromOneBased(2);
+    public static final Index INDEX_THIRD_PERSON = Index.fromOneBased(3);
 
     public static final ReadOnlyPerson ALICE = new PersonBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
