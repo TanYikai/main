@@ -70,7 +70,7 @@ public class ParserUtil {
      */
     public static Optional<Phone> parseAddPhone(Optional<String> phone) throws IllegalValueException {
         requireNonNull(phone);
-        return phone.isPresent() ? Optional.of(new Phone(phone.get())) : Optional.of(Phone.UNSPECIFED);
+        return phone.isPresent() ? Optional.of(new Phone(phone.get())) : Optional.of(Phone.UNSPECIFIED);
     }
 
     /**
