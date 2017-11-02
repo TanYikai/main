@@ -15,14 +15,14 @@ public class Phone {
             "Phone numbers can only contain numbers, and should be at least 3 digits long";
     public static final String PHONE_VALIDATION_REGEX = "\\d{3,}";
     public final String value;
-
+    //@@author TanYikai
     /**
      * The default Phone constructor when phone is not specified by the user
      */
     private Phone() {
         value = "Unspecified phone number";
     }
-
+    //@@author
     /**
      * Validates given phone number.
      * An exception to the ILLegalValueException is the String "Unspecified phone number"

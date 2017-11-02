@@ -24,21 +24,22 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Remark;
+import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.StorageStub;
-
+//@@author TanYikai
 /**
  * Contains integration tests (interaction with the Model) and unit tests for RemarkCommand.
  */
 public class RemarkCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    /*
+
     @Test
     public void execute_addRemark_success() throws Exception {
         Person editedPerson = new PersonBuilder(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()))
                 .withRemark("Some remark").build();
-       //Person editedPerson2 = new PersonBuilder(model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased()))
-        //        .withRemark("Some remark").build();
+        Person editedPersonTwo = new PersonBuilder(model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased()))
+                .withRemark("Some remark").build();
 
         RemarkCommand remarkCommand = prepareCommand(INDEX_FIRST_PERSON, INDEX_SECOND_PERSON,
                 editedPerson.getRemark().value);
@@ -47,13 +48,12 @@ public class RemarkCommandTest {
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.updatePerson(model.getFilteredPersonList().get(0), editedPerson);
-        //Model expectedModel2 = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        //expectedModel2.updatePerson(model.getFilteredPersonList().get(1), editedPerson2);
+
+        expectedModel.updatePerson(model.getFilteredPersonList().get(1), editedPersonTwo);
 
         assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
-        //assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel2);
     }
-    */
+
     @Test
     public void execute_deleteRemark_success() throws Exception {
         Person editedPerson = new Person(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
@@ -74,42 +74,7 @@ public class RemarkCommandTest {
         assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
         assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel2);
     }
-    /*
-    @Test
-    public void execute_filteredList_success() throws Exception {
-        showFirstPersonOnly(model);
 
-        ReadOnlyPerson personInFilteredList = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Person editedPerson = new PersonBuilder(personInFilteredList)
-                .withRemark("Some remark").build();
-
-        RemarkCommand remarkCommand = prepareCommand(INDEX_FIRST_PERSON, INDEX_SECOND_PERSON,
-                editedPerson.getRemark().value);
-
-        String expectedMessage = String.format(RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS, editedPerson);
-
-
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.updatePerson(model.getFilteredPersonList().get(0), editedPerson);
-
-        assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
-
-        showSecondPersonOnly(model);
-        ReadOnlyPerson personInFilteredList2 = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
-        Person editedPerson2 = new PersonBuilder(personInFilteredList2)
-                .withRemark("Some remark").build();
-
-        String expectedMessage2 = String.format(RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS, editedPerson2);
-
-
-        Model expectedModel2 = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel2.updatePerson(model.getFilteredPersonList().get(1), editedPerson2);
-
-
-        assertCommandSuccess(remarkCommand, model, expectedMessage2, expectedModel2);
-
-    }
-    */
     @Test
     public void execute_invalidPersonIndexUnfilteredList_failure() throws Exception {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
