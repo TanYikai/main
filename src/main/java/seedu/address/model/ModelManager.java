@@ -99,14 +99,14 @@ public class ModelManager extends ComponentManager implements Model {
         addressBook.updatePerson(target, editedPerson);
         indicateAddressBookChanged();
     }
-
+    //@@author TanYikai
     @Override
-    public void sortPersons() {
-        addressBook.sortData();
+    public void sortPersons(int sortOption) {
+        addressBook.sortData(sortOption);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         indicateAddressBookChanged();
     }
-
+    //@@author
     //@@author wenmogu
     /**
      * Removes a tag with the tagGettingRemoved string

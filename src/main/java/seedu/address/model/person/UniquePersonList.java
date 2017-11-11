@@ -70,10 +70,37 @@ public class UniquePersonList implements Iterable<Person> {
     }
     //@@author TanYikai
     /**
-     * Sorts the persons object in the list alphanumerically by name.
+     * Sorts the persons object according to the sortOption.
+     * 0,1,2,3,4 represents name, phone, email, address, remark respectively
      */
-    public void sort() {
+    public void sort(int sortOption) {
         requireNonNull(internalList);
+        if(sortOption == 0) {
+            for (Person p: internalList) {
+                p.setSortOption(0);
+            }
+        }
+        else if(sortOption == 1) {
+            for (Person p: internalList) {
+                p.setSortOption(1);
+            }
+        }
+        else if(sortOption == 2) {
+            for (Person p: internalList) {
+                p.setSortOption(2);
+            }
+        }
+        else if(sortOption == 3) {
+            for (Person p: internalList) {
+                p.setSortOption(3);
+            }
+        }
+        else if(sortOption == 4) {
+            for (Person p: internalList) {
+                p.setSortOption(4);
+            }
+        }
+
         Collections.sort(internalList);
     }
     //@@author

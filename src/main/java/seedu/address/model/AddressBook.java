@@ -157,14 +157,15 @@ public class AddressBook implements ReadOnlyAddressBook {
             throw new PersonNotFoundException();
         }
     }
-
+    //@@author TanYikai
     /**
-     * Sorts the data of the persons object alphanumerically by name.
+     *Sorts the persons object according to the sortOption.
+     * 0,1,2,3,4 represents name, phone, email, address, remark respectively
      */
-    public void sortData() {
-        persons.sort();
+    public void sortData(int sortOption) {
+        persons.sort(sortOption);
     }
-
+    //@@author
     //// tag-level operations
 
     public void addTag(Tag t) throws UniqueTagList.DuplicateTagException {

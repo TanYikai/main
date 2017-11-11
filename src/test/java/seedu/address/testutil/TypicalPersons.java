@@ -87,11 +87,71 @@ public class TypicalPersons {
     }
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons in unsorted order.
+     * Returns an {@code AddressBook} with all the typical persons in unsorted order by name.
      */
-    public static AddressBook getUnsortedAddressBook() {
+    public static AddressBook getUnsortedNameAddressBook() {
         AddressBook ab = new AddressBook();
-        for (ReadOnlyPerson person : getUnsortedTypicalPersons()) {
+        for (ReadOnlyPerson person : getUnsortedNameTypicalPersons()) {
+            try {
+                ab.addPerson(person);
+            } catch (DuplicatePersonException e) {
+                assert false : "not possible";
+            }
+        }
+        return ab;
+    }
+
+    /**
+     * Returns an {@code AddressBook} with all the typical persons in unsorted order by phone.
+     */
+    public static AddressBook getUnsortedPhoneAddressBook() {
+        AddressBook ab = new AddressBook();
+        for (ReadOnlyPerson person : getUnsortedPhoneTypicalPersons()) {
+            try {
+                ab.addPerson(person);
+            } catch (DuplicatePersonException e) {
+                assert false : "not possible";
+            }
+        }
+        return ab;
+    }
+
+    /**
+     * Returns an {@code AddressBook} with all the typical persons in unsorted order by email.
+     */
+    public static AddressBook getUnsortedEmailAddressBook() {
+        AddressBook ab = new AddressBook();
+        for (ReadOnlyPerson person : getUnsortedEmailTypicalPersons()) {
+            try {
+                ab.addPerson(person);
+            } catch (DuplicatePersonException e) {
+                assert false : "not possible";
+            }
+        }
+        return ab;
+    }
+
+    /**
+     * Returns an {@code AddressBook} with all the typical persons in unsorted order by address.
+     */
+    public static AddressBook getUnsortedAddressAddressBook() {
+        AddressBook ab = new AddressBook();
+        for (ReadOnlyPerson person : getUnsortedAddressTypicalPersons()) {
+            try {
+                ab.addPerson(person);
+            } catch (DuplicatePersonException e) {
+                assert false : "not possible";
+            }
+        }
+        return ab;
+    }
+
+    /**
+     * Returns an {@code AddressBook} with all the typical persons in unsorted order by address.
+     */
+    public static AddressBook getUnsortedRemarkAddressBook() {
+        AddressBook ab = new AddressBook();
+        for (ReadOnlyPerson person : getUnsortedRemarkTypicalPersons()) {
             try {
                 ab.addPerson(person);
             } catch (DuplicatePersonException e) {
@@ -105,7 +165,23 @@ public class TypicalPersons {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
 
-    public static List<ReadOnlyPerson> getUnsortedTypicalPersons() {
+    public static List<ReadOnlyPerson> getUnsortedNameTypicalPersons() {
         return new ArrayList<>(Arrays.asList(DANIEL, BENSON, CARL, ALICE, ELLE, FIONA, GEORGE));
+    }
+
+    public static List<ReadOnlyPerson> getUnsortedPhoneTypicalPersons() {
+        return new ArrayList<>(Arrays.asList(ELLE, BENSON, CARL, ALICE, DANIEL, FIONA, GEORGE));
+    }
+
+    public static List<ReadOnlyPerson> getUnsortedEmailTypicalPersons() {
+        return new ArrayList<>(Arrays.asList(DANIEL, BENSON, FIONA, ALICE, ELLE, CARL, GEORGE));
+    }
+
+    public static List<ReadOnlyPerson> getUnsortedAddressTypicalPersons() {
+        return new ArrayList<>(Arrays.asList(DANIEL, BENSON, CARL, ALICE, ELLE, FIONA, GEORGE));
+    }
+
+    public static List<ReadOnlyPerson> getUnsortedRemarkTypicalPersons() {
+        return new ArrayList<>(Arrays.asList(ALICE, FIONA, CARL, DANIEL, ELLE, BENSON, GEORGE));
     }
 }

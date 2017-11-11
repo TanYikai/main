@@ -35,6 +35,7 @@ public class Person implements ReadOnlyPerson, Comparable<Person> {
     private ObjectProperty<UniqueTagList> tags;
     private ObjectProperty<UniqueRelationshipList> relationships;
 
+    private int sortOption;
     //@@ author wenmogu
     /**
      * Every field must be present and not null.
@@ -205,6 +206,16 @@ public class Person implements ReadOnlyPerson, Comparable<Person> {
     }
 
     //@@author
+
+    //@@author TanYikai
+    /**
+     * Sets the sort option using integer
+     * 0,1,2,3,4 represents name, phone, email, address and remark respectively
+     */
+    public void setSortOption(int option) {
+        this.sortOption = option;
+    }
+    //@@author
     @Override
     public ReadOnlyPerson copy() {
         Name name = this.getName();
@@ -235,9 +246,23 @@ public class Person implements ReadOnlyPerson, Comparable<Person> {
         return getAsText();
     }
 
+    //@@author TanYikai
+    /**
+     * The compareTo method compares different attribute of the person object according to sortOption number
+     * The default is compare by name
+     * 1,2,3,4 represents phone, email, address amd remark respectively
+     */
     @Override
     public int compareTo(Person o) {
+        if(sortOption == 1)
+            return this.getPhone().toString().compareToIgnoreCase(o.getPhone().toString());
+        else if (sortOption == 2)
+            return this.getEmail().toString().compareToIgnoreCase(o.getEmail().toString());
+        else if(sortOption == 3)
+            return this.getAddress().toString().compareToIgnoreCase(o.getAddress().toString());
+        else if(sortOption == 4)
+            return this.getRemark().toString().compareToIgnoreCase(o.getRemark().toString());
         return this.getName().toString().compareToIgnoreCase(o.getName().toString());
     }
-
+    //@@author
 }

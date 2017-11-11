@@ -49,8 +49,8 @@ public interface Model {
         throws IllegalValueException, DuplicateRelationshipException;
 
     //@@author
-    /** Sorts the persons object alphanumerically by name. */
-    void sortPersons();
+    /** Sorts the persons object according to the sortOption integer given */
+    void sortPersons(int sortOption);
 
     //@@author wenmogu
     /**

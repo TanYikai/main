@@ -137,7 +137,7 @@ public class AddCommandTest {
         }
         //@@author TanYikai
         @Override
-        public void sortPersons() {
+        public void sortPersons(int sortOption) {
             fail("This method should not be called.");
         }
         //@@author
