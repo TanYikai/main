@@ -37,6 +37,14 @@ public class Relationship {
         this.setName(name);
     }
 
+    public Relationship(Relationship re) {
+        this.fromPerson = re.getFromPerson();
+        this.toPerson = re.getToPerson();
+        this.direction = re.getDirection();
+        this.name = re.getName();
+        this.confidenceEstimate = re.getConfidenceEstimate();
+    }
+
     public ReadOnlyPerson getFromPerson() {
         return fromPerson;
     }
@@ -47,6 +55,19 @@ public class Relationship {
 
     public RelationshipDirection getDirection() {
         return direction;
+    }
+
+    /**
+     * This is to make the relationship's person entries always point to the existing persons in the address book
+     * used when a person is updated
+     */
+    public Relationship replacePerson(ReadOnlyPerson previousPerson, ReadOnlyPerson currentPerson) {
+        if (this.fromPerson.equals(previousPerson)) {
+            this.fromPerson = currentPerson;
+        } else if (this.toPerson.equals(previousPerson)) {
+            this.toPerson = currentPerson;
+        }
+        return this;
     }
 
     public Name getName() {
@@ -81,6 +102,20 @@ public class Relationship {
         }
 
         return oppoRelationships;
+    }
+
+    /**
+     * Look for the counterpart of @param person in this relationship.
+     */
+    public ReadOnlyPerson counterpartOf(ReadOnlyPerson person) {
+        requireNonNull(person);
+        if (person.equals(this.fromPerson)) {
+            return this.toPerson;
+        } else if (person.equals(this.toPerson)) {
+            return this.fromPerson;
+        } else {
+            return null;
+        }
     }
 
     public void setName(Name name) {

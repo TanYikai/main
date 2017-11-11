@@ -219,10 +219,11 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-// tag::addRelationship[]
+// tag::addrelationship[]
 === addRelationship command
 
 The addRelationship command adds a directed or undirected relationship between two persons in the address book.
+Name and confidence estimate are the optional fields in this command.
 The user is able to view the changes in the relationships in the graph window.
 
 ==== Design Considerations
@@ -236,7 +237,35 @@ The user is able to view the changes in the relationships in the graph window.
 **Cons:** Maintenance of this single entity of graph can be costly as it can become massive. +
 **Cons:** Currently a person is identified by his/her index in the most recent listing. As the indexes of persons change, matching the relationship to the correct persons involved will be a headache.
 
-// tag::removeTag[]
+---
+
+**Aspect:** Record of the relationship in the address book +
+**Alternative 1 (current choice):** A relationship between two persons are recorded in both persons' `UniqueRelationshipList`. +
+**Pros:** Easy search of the relationship in the address book as both parties involved in the relationship have record of it. +
+**Cons:** Maintenance of the relationships is troublesome as a single relationship has to be added, modified or deleted twice. +
+**Alternative 2:** A relationship between two persons are recorded in the `fromPerson`'s `UniqueRelationshipList`, except that when the relationship is undirected, it is recorded twice under both parties. +
+**Pros:** Easy maintenance of the relationships. +
+**Cons:** More scenarios to consider when performing actions to the relationship. Hence, it will lead to more difficult implementation.
+// end::addrelationship[]
+
+// tag::deleterelationship[]
+=== deleteRelationship command
+
+The deleteRelationship command deletes a relationship between two persons in the address book.
+The user is able to view the disappearance of the relationship in the graph window.
+
+==== Design Considerations
+
+**Aspect:** Implementation for deleteRelationship command +
+**Alternative 1 (current choice):** The indexes of the persons specified in user input does not matter. +
+**Pros:** User only needs to remember the two parties involved in the relationship to be deleted, making this command more user friendly. +
+**Cons:** More memory needed for the double record of relationships under both parties involved. +
+**Alternative 2:** The indexes of the persons specified in user input matters. +
+**Pros:** Less memory needed for recording the relationship. +
+**Cons:** User has to know the specific information of the relationship, making this command not user-friendly.
+// end::deleterelationship[]
+
+// tag::removetag[]
 === removeTag command
 
 The removeTag command removes a tag with the specified name from the address book. All the appearances of the tag in the address book are removed.
@@ -271,6 +300,7 @@ This command is implemented in the style of the `edit` command and `delete` comm
 **Alternative 2:** The command allows the user input to specify the persons from whom the tag should be removed. +
 **Pros:** The user can remove the tags from a few specific people in one command. +
 **Cons:** Implementation is more difficult as parsing of additional user input required. It is also unlikely for user to remove the tag from many persons at once, hence there is a function overlap with `edit` command.
+// end::removetag[]
 
 // tag::find[]
 === Enhanced `find` command
@@ -318,6 +348,7 @@ In order to enhance the `find` command, the `find` command is extended to suppor
 **Alternative 2:** Users can search within an arbitrary number of narrowed fields (e.g. can search for names and emails only, or search for names, emails, and addresses). +
 **Pros:** More search options available for users, more advanced search functions. +
 **Cons:** Harder to implement since the parser will have to handle more prefixes.
+//end::find[]
 
 // tag::undoredo[]
 === Undo/Redo mechanism
@@ -473,31 +504,31 @@ A separate parser for phone, email, address and remark are used to accommodate t
 **Cons:** The Tag may be more difficult to find and more work is needed to change the find tag command. Additionally, the user interface of tag command also needs to be changed to accommodate long tags. +
 // end::EnhancedAddCommand[]
 
-// tag::clearhistory[]
-=== `clearhistory` command
+// tag::clearHistory[]
+=== `clearHistory` command
 
-The `clearhistory` command is implemented as a regular command that calls `.clear()` methods added to `CommandHistory` and `UndoRedoStack`, which clears the command history and the undo/redo stack respectively.
+The `clearHistory` command is implemented as a regular command that calls `.clear()` methods added to `CommandHistory` and `UndoRedoStack`, which clears the command history and the undo/redo stack respectively.
 
 ==== Design Considerations
 
-**Aspect:** Type of `clearhistory` command +
+**Aspect:** Type of `clearHistory` command +
 **Alternative 1 (current choice):** `Command` +
 **Pros:** History is permanently cleared. +
 **Cons:** Impossible to undo accidental clearing of history, meaning all undoable changes become permanent. +
 **Alternative 2:** `UndoableCommand` +
 **Pros:** Possible to undo accidental clearing of history. +
-**Cons:** Since the most likely use for `clearhistory` is for it to be permanent, having it be undoable is counterintuitive to user expectations.
+**Cons:** Since the most likely use for `clearHistory` is for it to be permanent, having it be undoable is counterintuitive to user expectations.
 
 ---
 
-**Aspect:** Behaviour of `clearhistory` command on empty history +
+**Aspect:** Behaviour of `clearHistory` command on empty history +
 **Alternative 1 (current choice):** Clear anyway and indicate success +
 **Pros:** Simple to implement, no additional cases to take care of. +
 **Cons:** May be confusing to declare an empty history cleared. +
 **Alternative 2:** Indicate that history is empty. +
 **Pros:** Clearer messages about the state of the command history. +
 **Cons:** More complex to implement, and the end result of clearing an empty history also results in a cleared history, meaning the user intention of clearing their history is fufilled regardless of which alternative is chosen.
-// end::clearhistory[]
+// end::clearHistory[]
 
 === Logging
 
@@ -921,7 +952,9 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* * *` |user |update a person's details |update a person's details without having to create a new contact
 
-|`*` |user |update the link:#confidence-estimate[confidence estimate] on a person's attributes |update confidence in pieces of information
+|`* *` |user |update link:#name[name of the relationship] of a relationship |show that two persons know each other via a specific method
+
+|`* *` |user |update link:#confidence-estimate[confidence estimate] of a relationship |differentiate between verified and unverified pieces of information
 
 |`*` |user |change the colour of the network |personalise my address book
 
@@ -1090,18 +1123,14 @@ Use case ends.
 Use case resumes at step 2.
 
 [discrete]
-=== Use case: Add a named relationship between two persons
+=== Use case: Delete a relationship between two persons
 
 *MSS*
 
 1.  User requests to list persons
 2.  AddressBook shows a list of persons
-3.  User requests to add an relationship between two specific persons
-4.  AddressBook adds an relationship between those two persons
-5.  User requests to show a list of relationships
-6.  AddressBook shows a list of relationships
-7.  User requests to add a name to that relationship
-8.  AddressBook adds a name to that relationship
+3.  User requests to delete a relationship between two specific persons
+4.  AddressBook deletes the relationship between those two persons
 +
 Use case ends.
 
@@ -1118,13 +1147,6 @@ Use case ends.
 ** 3a1. AddressBook shows an error message.
 +
 Use case resumes at step 2.
-
-* 7a. The index of relationship given to be added name on is invalid.
-+
-[none]
-** 7a1. AddressBook shows an error message.
-+
-Use case resumes at step 6.
 
 [discrete]
 === Use case: Add a remark
@@ -1211,7 +1233,7 @@ Shorthand form of a command
 Confidence estimate
 
 ....
-A percentage that represents how confident the user is in a particular attribute being accurate
+A percentage that represents how confident the user is in the information of the relationship being accurate
 ....
 
 [[mainstream-os]]
@@ -1221,11 +1243,11 @@ Mainstream OS
 Windows, Linux, Unix, OS-X
 ....
 
-[[named-relationship]]
-Named relationship
+[[relationship-name]]
+Relationship name
 
 ....
-A relationship between two people with a specific status (eg. lecturer-student)
+A specific status for the relationship(eg. lecturer-student)
 ....
 
 [appendix]
