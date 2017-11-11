@@ -75,27 +75,23 @@ public class UniquePersonList implements Iterable<Person> {
      */
     public void sort(int sortOption) {
         requireNonNull(internalList);
-        if(sortOption == 0) {
+        if (sortOption == 0) {
             for (Person p: internalList) {
                 p.setSortOption(0);
             }
-        }
-        else if(sortOption == 1) {
+        } else if (sortOption == 1) {
             for (Person p: internalList) {
                 p.setSortOption(1);
             }
-        }
-        else if(sortOption == 2) {
+        } else if (sortOption == 2) {
             for (Person p: internalList) {
                 p.setSortOption(2);
             }
-        }
-        else if(sortOption == 3) {
+        } else if (sortOption == 3) {
             for (Person p: internalList) {
                 p.setSortOption(3);
             }
-        }
-        else if(sortOption == 4) {
+        } else if (sortOption == 4) {
             for (Person p: internalList) {
                 p.setSortOption(4);
             }

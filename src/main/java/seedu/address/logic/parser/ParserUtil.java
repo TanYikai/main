@@ -1,12 +1,11 @@
 package seedu.address.logic.parser;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
-
-import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -39,9 +38,10 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_INSUFFICIENT_PARTS = "Number of parts must be more than 1.";
     public static final String MESSAGE_INVALID_DIRECTION = "Direction must be directed or undirected.";
-    public static final String MESSAGE_INVALID_PREFIX = "Prefix is not of the required format. " +
-            "Required formats are \"n/\" or \"p/\" or \"e/\" or \"a/\" or \"r/\"." +
-            "\n" +"Example: sort n/";
+    public static final String MESSAGE_INVALID_PREFIX = "Prefix is not of the required format. "
+            + "Required formats are \"n/\" or \"p/\" or \"e/\" or \"a/\" or \"r/\"."
+            + "\n"
+            + "Example: sort n/";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -67,20 +67,15 @@ public class ParserUtil {
 
         if (trimmedPrefix.equals(PREFIX_NAME.toString())) {
             sortOption = 0;
-        }
-        else if(trimmedPrefix.equals(PREFIX_PHONE.toString())){
+        } else if (trimmedPrefix.equals(PREFIX_PHONE.toString())) {
             sortOption = 1;
-        }
-        else if(trimmedPrefix.equals(PREFIX_EMAIL.toString())){
+        } else if (trimmedPrefix.equals(PREFIX_EMAIL.toString())) {
             sortOption = 2;
-        }
-        else if(trimmedPrefix.equals(PREFIX_ADDRESS.toString())){
+        } else if (trimmedPrefix.equals(PREFIX_ADDRESS.toString())) {
             sortOption = 3;
-        }
-        else if(trimmedPrefix.equals(PREFIX_REMARK.toString())){
+        } else if (trimmedPrefix.equals(PREFIX_REMARK.toString())) {
             sortOption = 4;
-        }
-        else {
+        } else {
             throw new IllegalValueException(MESSAGE_INVALID_PREFIX);
         }
         return sortOption;

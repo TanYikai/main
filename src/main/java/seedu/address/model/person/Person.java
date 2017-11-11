@@ -254,14 +254,15 @@ public class Person implements ReadOnlyPerson, Comparable<Person> {
      */
     @Override
     public int compareTo(Person o) {
-        if(sortOption == 1)
+        if (sortOption == 1) {
             return this.getPhone().toString().compareToIgnoreCase(o.getPhone().toString());
-        else if (sortOption == 2)
+        } else if (sortOption == 2) {
             return this.getEmail().toString().compareToIgnoreCase(o.getEmail().toString());
-        else if(sortOption == 3)
+        } else if (sortOption == 3) {
             return this.getAddress().toString().compareToIgnoreCase(o.getAddress().toString());
-        else if(sortOption == 4)
+        } else if (sortOption == 4) {
             return this.getRemark().toString().compareToIgnoreCase(o.getRemark().toString());
+        }
         return this.getName().toString().compareToIgnoreCase(o.getName().toString());
     }
     //@@author
