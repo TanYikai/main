@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -26,6 +27,7 @@ import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.model.person.Remark;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.relationship.Relationship;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -109,8 +111,10 @@ public class EditCommand extends UndoableCommand {
         Remark updatedRemark = editPersonDescriptor.getRemark().orElse(personToEdit.getRemark());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRemark,
-                updatedTags);
+        Person newPerson = new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRemark,
+                updatedTags, new HashSet<>());
+
+        return newPerson;
     }
 
     @Override
@@ -142,6 +146,7 @@ public class EditCommand extends UndoableCommand {
         private Address address;
         private Remark remark;
         private Set<Tag> tags;
+        private Set<Relationship> relationships;
 
         public EditPersonDescriptor() {}
 
