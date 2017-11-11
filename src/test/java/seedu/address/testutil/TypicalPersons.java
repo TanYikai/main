@@ -245,7 +245,6 @@ public class TypicalPersons {
         return ab;
     }
     //@@author
-    
     /**
      * add an relationship into the TypicalPersons for testing purposes
      */
@@ -274,7 +273,7 @@ public class TypicalPersons {
     }
 
     public static List<ReadOnlyPerson> getTypicalSortedEmailPersons() {
-        return new ArrayList<>(Arrays.asList(ALICE, GEORGE, DANIEL, CARL,BENSON, FIONA, ELLE));
+        return new ArrayList<>(Arrays.asList(ALICE, GEORGE, DANIEL, CARL, BENSON, FIONA, ELLE));
     }
 
     public static List<ReadOnlyPerson> getTypicalSortedAddressPersons() {
