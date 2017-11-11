@@ -28,6 +28,11 @@ import seedu.address.testutil.StorageStub;
  * Contains integration tests (interaction with the Model) and unit tests for SortCommand.
  */
 public class SortCommandTest {
+    private static final int sortOptionName = 0;
+    private static final int sortOptionPhone = 1;
+    private static final int sortOptionEmail = 2;
+    private static final int sortOptionAddress = 3;
+    private static final int sortOptionRemark = 4;
 
     private Model modelName;
     private Model modelPhone;
@@ -46,12 +51,6 @@ public class SortCommandTest {
     private Model unsortedEmailModel;
     private Model unsortedAddressModel;
     private Model unsortedRemarkModel;
-
-    private static final int sortOptionName = 0;
-    private static final int sortOptionPhone = 1;
-    private static final int sortOptionEmail = 2;
-    private static final int sortOptionAddress = 3;
-    private static final int sortOptionRemark = 4;
 
     private SortCommand sortCommandName;
     private SortCommand sortCommandPhone;
