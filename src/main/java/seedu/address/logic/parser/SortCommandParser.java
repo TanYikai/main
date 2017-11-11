@@ -8,14 +8,13 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * Parses input arguments and creates a new SortCommand object
  */
 public class SortCommandParser implements Parser<SortCommand> {
-    private int sortOption;
-
     /**
      * Parses the given {@code String} of arguments in the context of the SortCommand
      * and returns an SortCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public SortCommand parse(String args) throws ParseException {
+        int sortOption;
 
         try {
             sortOption = ParserUtil.parseSortOption(args);
