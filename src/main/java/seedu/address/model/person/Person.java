@@ -12,13 +12,10 @@ import java.util.Set;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.parser.ParserUtil.Option;
 import seedu.address.model.relationship.Relationship;
 import seedu.address.model.relationship.RelationshipDirection;
 import seedu.address.model.relationship.UniqueRelationshipList;
-
 import seedu.address.model.relationship.exceptions.DuplicateRelationshipException;
-
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
 
@@ -36,8 +33,7 @@ public class Person implements ReadOnlyPerson {
 
     private ObjectProperty<UniqueTagList> tags;
     private ObjectProperty<UniqueRelationshipList> relationships;
-
-    private Option sortOption;
+    
     //@@ author wenmogu
     /**
      * Every field must be present and not null.
@@ -208,15 +204,6 @@ public class Person implements ReadOnlyPerson {
 
     //@@author
 
-    //@@author TanYikai
-    /**
-     * Sets the sort option using integer
-     * 0,1,2,3,4 represents name, phone, email, address and remark respectively
-     */
-    public void setSortOption(Option option) {
-        this.sortOption = option;
-    }
-    //@@author
     @Override
     public ReadOnlyPerson copy() {
         Name name = this.getName();
