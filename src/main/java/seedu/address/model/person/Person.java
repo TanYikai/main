@@ -11,6 +11,7 @@ import java.util.Set;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import seedu.address.logic.parser.ParserUtil.Option;
 import seedu.address.model.relationship.Relationship;
 import seedu.address.model.relationship.RelationshipDirection;
 import seedu.address.model.relationship.UniqueRelationshipList;
@@ -35,7 +36,7 @@ public class Person implements ReadOnlyPerson, Comparable<Person> {
     private ObjectProperty<UniqueTagList> tags;
     private ObjectProperty<UniqueRelationshipList> relationships;
 
-    private int sortOption;
+    private Option sortOption;
     //@@ author wenmogu
     /**
      * Every field must be present and not null.
@@ -212,7 +213,7 @@ public class Person implements ReadOnlyPerson, Comparable<Person> {
      * Sets the sort option using integer
      * 0,1,2,3,4 represents name, phone, email, address and remark respectively
      */
-    public void setSortOption(int option) {
+    public void setSortOption(Option option) {
         this.sortOption = option;
     }
     //@@author
@@ -250,17 +251,16 @@ public class Person implements ReadOnlyPerson, Comparable<Person> {
     /**
      * The compareTo method compares different attribute of the person object according to sortOption number
      * The default is compare by name
-     * 1,2,3,4 represents phone, email, address amd remark respectively
      */
     @Override
     public int compareTo(Person o) {
-        if (sortOption == 1) {
+        if (sortOption == Option.PHONE) {
             return this.getPhone().toString().compareToIgnoreCase(o.getPhone().toString());
-        } else if (sortOption == 2) {
+        } else if (sortOption == Option.EMAIL) {
             return this.getEmail().toString().compareToIgnoreCase(o.getEmail().toString());
-        } else if (sortOption == 3) {
+        } else if (sortOption == Option.ADDRESS) {
             return this.getAddress().toString().compareToIgnoreCase(o.getAddress().toString());
-        } else if (sortOption == 4) {
+        } else if (sortOption == Option.REMARK) {
             return this.getRemark().toString().compareToIgnoreCase(o.getRemark().toString());
         }
         return this.getName().toString().compareToIgnoreCase(o.getName().toString());

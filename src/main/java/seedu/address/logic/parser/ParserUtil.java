@@ -61,24 +61,32 @@ public class ParserUtil {
      * 0,1,2,3,4 corresponds to PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_REMARK respectively
      * @throws IllegalValueException if the specified prefix is invalid (not n/, p/, e/, a/ or r/).
      */
-    public static int parseSortOption(String prefix) throws IllegalValueException {
+    public static Option parseSortOption(String prefix) throws IllegalValueException {
         String trimmedPrefix = prefix.trim();
-        int sortOption;
+        Option sortOption;
 
         if (trimmedPrefix.equals(PREFIX_NAME.toString())) {
-            sortOption = 0;
+            sortOption = Option.NAME;
         } else if (trimmedPrefix.equals(PREFIX_PHONE.toString())) {
-            sortOption = 1;
+            sortOption = Option.PHONE;
         } else if (trimmedPrefix.equals(PREFIX_EMAIL.toString())) {
-            sortOption = 2;
+            sortOption = Option.EMAIL;
         } else if (trimmedPrefix.equals(PREFIX_ADDRESS.toString())) {
-            sortOption = 3;
+            sortOption = Option.ADDRESS;
         } else if (trimmedPrefix.equals(PREFIX_REMARK.toString())) {
-            sortOption = 4;
+            sortOption = Option.REMARK;
         } else {
             throw new IllegalValueException(MESSAGE_INVALID_PREFIX);
         }
         return sortOption;
+    }
+
+    /**
+     * The enum for the various sort options available.
+     * NAME, PHONE, EMAIL, ADDRESS, REMARK means sort by name, phone, eail, address or remark respectively
+     */
+    public enum Option {
+        NAME, PHONE, EMAIL, ADDRESS, REMARK
     }
     //@@author
     /**

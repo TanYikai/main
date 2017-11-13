@@ -11,6 +11,7 @@ import org.fxmisc.easybind.EasyBind;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.logic.parser.ParserUtil.Option;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.relationship.Relationship;
@@ -75,27 +76,27 @@ public class UniquePersonList implements Iterable<Person> {
      * Sorts the persons object according to the sortOption.
      * 0,1,2,3,4 represents name, phone, email, address, remark respectively
      */
-    public void sort(int sortOption) {
+    public void sort(Option sortOption) {
         requireNonNull(internalList);
-        if (sortOption == 0) {
+        if (sortOption == Option.NAME) {
             for (Person p: internalList) {
-                p.setSortOption(0);
+                p.setSortOption(Option.NAME);
             }
-        } else if (sortOption == 1) {
+        } else if (sortOption == Option.PHONE) {
             for (Person p: internalList) {
-                p.setSortOption(1);
+                p.setSortOption(Option.PHONE);
             }
-        } else if (sortOption == 2) {
+        } else if (sortOption == Option.EMAIL) {
             for (Person p: internalList) {
-                p.setSortOption(2);
+                p.setSortOption(Option.EMAIL);
             }
-        } else if (sortOption == 3) {
+        } else if (sortOption == Option.ADDRESS) {
             for (Person p: internalList) {
-                p.setSortOption(3);
+                p.setSortOption(Option.ADDRESS);
             }
-        } else if (sortOption == 4) {
+        } else if (sortOption == Option.REMARK) {
             for (Person p: internalList) {
-                p.setSortOption(4);
+                p.setSortOption(Option.REMARK);
             }
         }
 

@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.Assert.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showFirstPersonOnly;
+import static seedu.address.logic.parser.ParserUtil.Option;
 import static seedu.address.testutil.TypicalPersons.getTypicalSortedAddressAddressBook;
 import static seedu.address.testutil.TypicalPersons.getTypicalSortedEmailAddressBook;
 import static seedu.address.testutil.TypicalPersons.getTypicalSortedNameAddressBook;
@@ -28,11 +29,11 @@ import seedu.address.testutil.StorageStub;
  * Contains integration tests (interaction with the Model) and unit tests for SortCommand.
  */
 public class SortCommandTest {
-    private static final int sortOptionName = 0;
-    private static final int sortOptionPhone = 1;
-    private static final int sortOptionEmail = 2;
-    private static final int sortOptionAddress = 3;
-    private static final int sortOptionRemark = 4;
+    private static final Option sortOptionName = Option.NAME;
+    private static final Option sortOptionPhone = Option.PHONE;
+    private static final Option sortOptionEmail = Option.EMAIL;
+    private static final Option sortOptionAddress = Option.ADDRESS;
+    private static final Option sortOptionRemark = Option.REMARK;
 
     private Model modelName;
     private Model modelPhone;

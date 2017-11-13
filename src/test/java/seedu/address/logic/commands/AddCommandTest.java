@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
+import static seedu.address.logic.parser.ParserUtil.Option;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -141,7 +142,7 @@ public class AddCommandTest {
         }
         //@@author TanYikai
         @Override
-        public void sortPersons(int sortOption) {
+        public void sortPersons(Option sortOption) {
             fail("This method should not be called.");
         }
         //@@author

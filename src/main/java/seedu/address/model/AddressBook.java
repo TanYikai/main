@@ -11,6 +11,7 @@ import java.util.Set;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.model.person.UniquePersonList;
@@ -189,7 +190,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      *Sorts the persons object according to the sortOption.
      * 0,1,2,3,4 represents name, phone, email, address, remark respectively
      */
-    public void sortData(int sortOption) {
+    public void sortData(ParserUtil.Option sortOption) {
         persons.sort(sortOption);
     }
     //@@author

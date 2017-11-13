@@ -1,5 +1,8 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.logic.parser.ParserUtil.Option;
+import static seedu.address.logic.parser.ParserUtil.parseSortOption;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -14,10 +17,10 @@ public class SortCommandParser implements Parser<SortCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public SortCommand parse(String args) throws ParseException {
-        int sortOption;
+        Option sortOption;
 
         try {
-            sortOption = ParserUtil.parseSortOption(args);
+            sortOption = parseSortOption(args);
 
             return new SortCommand(sortOption);
         } catch (IllegalValueException ive) {
