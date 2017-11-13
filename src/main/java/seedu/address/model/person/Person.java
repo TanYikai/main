@@ -25,7 +25,7 @@ import seedu.address.model.tag.UniqueTagList;
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated.
  */
-public class Person implements ReadOnlyPerson, Comparable<Person> {
+public class Person implements ReadOnlyPerson {
 
     private ObjectProperty<Name> name;
     private ObjectProperty<Phone> phone;
@@ -247,23 +247,4 @@ public class Person implements ReadOnlyPerson, Comparable<Person> {
         return getAsText();
     }
 
-    //@@author TanYikai
-    /**
-     * The compareTo method compares different attribute of the person object according to sortOption number
-     * The default is compare by name
-     */
-    @Override
-    public int compareTo(Person o) {
-        if (sortOption == Option.PHONE) {
-            return this.getPhone().toString().compareToIgnoreCase(o.getPhone().toString());
-        } else if (sortOption == Option.EMAIL) {
-            return this.getEmail().toString().compareToIgnoreCase(o.getEmail().toString());
-        } else if (sortOption == Option.ADDRESS) {
-            return this.getAddress().toString().compareToIgnoreCase(o.getAddress().toString());
-        } else if (sortOption == Option.REMARK) {
-            return this.getRemark().toString().compareToIgnoreCase(o.getRemark().toString());
-        }
-        return this.getName().toString().compareToIgnoreCase(o.getName().toString());
-    }
-    //@@author
 }

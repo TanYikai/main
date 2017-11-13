@@ -10,6 +10,19 @@ Intelli is a desktop relationship tracker used by private investigators (PI) to 
 
 === Enhancement Added: Alias
 
+==== External behavior
+
+---
+Instead of typing the standard command such as `add`, `edit`, etc, user can use `a`, `e` to execute the same commands. +
+---
+
+==== Justification
+To enable user to type in command at a faster rate, command shortcuts or command alias was introduced. +
+
+#End of Extract#
+
+---
+
 === Enhancement Added: Sort
 
 ==== External behavior
@@ -72,7 +85,8 @@ Hence, the Enhanced add command was made which only made the name input of the a
 The rationale behind deciding on at least a single compulsory field is so that it is more logical to have at least one information before adding into the addressbook and that an empty addressbook is still invalid. +
 Name was chosen as the compulsory field as a person's name is the main information that will identify and distinguish one person input from another in the adressbook. +
 
-`Integrated remark`
+`Integrated remark` +
+
 Initially, the remark command was a separate command because the original purpose of remark is to add and edit a remark field on 2 person concurrently. +
 The initial idea for the remark field was for the user to put down a common relationship between 2 person in the form of sentences or words describing the relationship. +
 This feature was later made obsolete by the more comprehensive relationship feature and hence the remark command was removed. +
