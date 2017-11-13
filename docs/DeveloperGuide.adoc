@@ -286,6 +286,32 @@ The user is able to view the changes in the relationships in the graph window.
 **Cons:** More scenarios to consider when performing actions to the relationship. Hence, it will lead to more difficult implementation.
 // end::addrelationship[]
 
+// tag::colourTag[]
+=== `colorTag` command mechanism
+
+The `colourTag` command sets a tag colour for a given tag that is stored in `UserPrefs` as a `Map<Tag, String>` of tag-colour pairs.
+
+==== Design Considerations
+
+**Aspect:** Persistence mechanism for tag colours +
+**Alternative 1 (current choice):** Store in `UserPrefs` as GUI settings +
+**Pros:** Tag colour settings remain the same for different data files, more consistency for user. +
+**Cons:** `Storage` has to be extended to provide access to `UserPrefs` for `Command`, difficult to signal a tag colour change when no user data is modified. +
+**Alternative 2:** Store in `XmlAddressBookStorage` as user data. +
+**Pros:** Easier to signal tag colour changes to GUI. +
+**Cons:** Tag colours will be different depending on which data file is loaded, leading to inconsistency and confusion for the user.
+
+---
+
+**Aspect:** Location for storing tag colours +
+**Alternative 1 (current choice):** Global tag colour mapping +
+**Pros:** No possibility of two identical tags having different colours, easy to update all instances of one tag with new colour. +
+**Cons:**  More difficult to indicate a tag colour change to the GUI as no user data is visibly modified+
+**Alternative 2:** Each tag stores its own colour. +
+**Pros:** Easier to signal tag colour changes to GUI. +
+**Cons:** Possibility of identical tag containing different colours.
+// end::colourTag[]
+
 // tag::deleterelationship[]
 === deleteRelationship command
 
