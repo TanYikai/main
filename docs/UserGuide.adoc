@@ -592,7 +592,8 @@ e.g. `find James Jake`
 e.g. `removeTag friend`
 * *Find shortest relationship path* : `relPath FROM_INDEX TO_INDEX` +
 e.g. `relPath 1 2`
-* *Sort* : `sort`
+* *Sort* : `sort PREFIX` +
+e.g. `sort n/`
 * *Select* : `select INDEX` +
 e.g.`select 2`
 * *Undo* : `undo`
