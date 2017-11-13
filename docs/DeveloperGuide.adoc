@@ -221,6 +221,42 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+// tag::backup[]
+=== Backup mechanism
+
+The backup mechanism is facilitated by the `backupAddressBook()` method added to the `Storage` component, which saves the current state of the address book to a predefined backup location (`intelli.xml.bak` in the `data` directory). This functionality is then invoked through the `backup` command, and the `Command` and `Logic` classes have been extended to have access to the `Storage` component of the address book.
+
+==== Design Considerations
+
+**Aspect:** Type of command implemented +
+**Alternative 1 (current choice):** `Command` +
+**Pros:** Simple to implement; undo / redo mechanism does not need to know how to interact with `Storage` to undo a backup. +
+**Cons:** Accidental backups may be invoked, potentially overwriting an existing backup. +
+**Alternative 2:** `UndoableCommand` +
+**Pros:** Possible to undo a backup; prevents accidental overwrites of an existing backup. +
+**Cons:** The undo / redo mechanism needs to be extended to be able to redo / undo backups, increasing interaction with the `Storage` component.
+
+---
+
+**Aspect:** Location of backup file +
+**Alternative 1 (current choice):** `data/intelli.xml.bak` +
+**Pros:** Easy to locate for the user; file is always in a predictable location. +
+**Cons:** Accidental backups may be invoked, potentially overwriting an existing backup in the same location. +
+**Alternative 2:** Add a timestamp to the backup filename +
+**Pros:** Will not overwrite existing backups, can serve as rudimentary version control mechanism. +
+**Cons:** User may not be aware of how many backups they have created; might cause a lot of backups to exist, creating confusion.
+
+---
+
+**Aspect:** Interaction between `Command` and `StorageManager` +
+**Alternative 1 (current choice):** Extend `setData()` to also recieve the `Storage` component +
+**Pros:** In line with existing architecture, does not introduce global state. +
+**Cons:** All invocations of `setData()` have to be changed; but only one command uses `StorageManager`, creating unnessasary busywork. +
+**Alternative 2:** Make `StorageManager` a Singleton +
+**Pros:** Does not affect existing commands; easy for `BackupCommand` to access. +
+**Cons:** Changes architecture of app, introduces more global state.
+// end::backup[]
+
 // tag::addrelationship[]
 === addRelationship command
 
