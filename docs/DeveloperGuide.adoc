@@ -566,6 +566,11 @@ For example, for `sortOption` == `Option.NAME`, the comparator that compares the
 
 image::SortOptionDecide.png[width="800"]
 
+The Sequence Diagram of the `SortCommand` is given below. It uses both Logic and Model component. +
+
+image::SortCommandSequenceDiagram.png[width="800"]
+
+image::SortCommandSequenceDiagramPart2.png[width="800"]
 
 ==== Design Considerations
 
