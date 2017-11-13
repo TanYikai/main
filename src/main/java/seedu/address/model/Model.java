@@ -10,6 +10,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.person.exceptions.RelationshipNotFoundException;
 import seedu.address.model.person.exceptions.TagNotFoundException;
 import seedu.address.model.relationship.ConfidenceEstimate;
 import seedu.address.model.relationship.RelationshipDirection;
@@ -50,6 +51,10 @@ public interface Model {
         throws IllegalValueException, DuplicateRelationshipException;
 
     void deleteRelationship(Index indexFromPerson, Index indexToPerson) throws IllegalValueException;
+
+    //@@author joanneong
+    void editRelationship(Index indexFromPerson, Index indexToPerson, Name name, ConfidenceEstimate confidenceEstimate)
+        throws IllegalValueException, RelationshipNotFoundException, DuplicateRelationshipException;
 
     //@@author
     /** Sorts the persons object according to the sortOption integer given */

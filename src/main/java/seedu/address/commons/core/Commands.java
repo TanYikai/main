@@ -11,6 +11,7 @@ import seedu.address.logic.commands.ColourTagCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteRelationshipCommand;
 import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EditRelationshipCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
@@ -38,6 +39,7 @@ public class Commands {
         DeleteCommand.COMMAND_WORD,
         DeleteRelationshipCommand.COMMAND_WORD,
         EditCommand.COMMAND_WORD,
+        EditRelationshipCommand.COMMAND_WORD,
         ExitCommand.COMMAND_WORD,
         FindCommand.COMMAND_WORD,
         HelpCommand.COMMAND_WORD,
@@ -61,6 +63,7 @@ public class Commands {
         DeleteCommand.COMMAND_ALIAS,
         DeleteRelationshipCommand.COMMAND_ALIAS,
         EditCommand.COMMAND_ALIAS,
+        EditRelationshipCommand.COMMAND_ALIAS,
         ExitCommand.COMMAND_ALIAS,
         FindCommand.COMMAND_ALIAS,
         HelpCommand.COMMAND_ALIAS,
@@ -68,6 +71,7 @@ public class Commands {
         ListCommand.COMMAND_ALIAS,
         RedoCommand.COMMAND_ALIAS,
         RelPathCommand.COMMAND_ALIAS,
+        RemoveTagCommand.COMMAND_ALIAS,
         SelectCommand.COMMAND_ALIAS,
         SortCommand.COMMAND_ALIAS,
         UndoCommand.COMMAND_ALIAS
@@ -83,6 +87,7 @@ public class Commands {
         DeleteCommand.SHORT_MESSAGE_USAGE,
         DeleteRelationshipCommand.SHORT_MESSAGE_USAGE,
         EditCommand.SHORT_MESSAGE_USAGE,
+        EditRelationshipCommand.SHORT_MESSAGE_USAGE,
         ExitCommand.SHORT_MESSAGE_USAGE,
         FindCommand.SHORT_MESSAGE_USAGE,
         HelpCommand.SHORT_MESSAGE_USAGE,
@@ -102,6 +107,7 @@ public class Commands {
 
         for (int i = 0; i < ALL_COMMAND_WORDS.length; i++) {
             ALL_COMMANDS_AND_SHORT_MESSAGES.put(ALL_COMMAND_WORDS[i], ALL_SHORT_MESSAGE_USAGES[i]);
+            ALL_COMMANDS_AND_SHORT_MESSAGES.put(ALL_COMMAND_ALIASES[i], ALL_SHORT_MESSAGE_USAGES[i]);
         }
     }
 

@@ -12,6 +12,7 @@ import java.util.Set;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import seedu.address.logic.parser.ParserUtil.Option;
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.relationship.Relationship;
 import seedu.address.model.relationship.RelationshipDirection;
 import seedu.address.model.relationship.UniqueRelationshipList;
@@ -170,34 +171,33 @@ public class Person implements ReadOnlyPerson {
         return tagsList.removeTag(tagGettingRemoved);
     }
 
-    //@@ author wenmogu
     @Override
     public Set<Relationship> getRelationships() {
         return Collections.unmodifiableSet(relationships.get().toSet());
     }
 
-    //@@ author wenmogu
     /**
      * Add a relationship to a person's relationships
      */
-    public boolean addRelationship(Relationship re) throws DuplicateRelationshipException {
+    public void addRelationship(Relationship re) throws DuplicateRelationshipException {
         UniqueRelationshipList reList = relationships.get();
         ArrayList<Relationship> oppoRelationships = re.oppositeRelationships();
         for (Relationship oppoRe: oppoRelationships) {
-            removeRelationship(oppoRe);
+            if (reList.contains(oppoRe)) {
+                throw new DuplicateRelationshipException();
+            }
         }
 
         if (!re.isUndirected()) {
             Relationship directlyOppoRelationship = new Relationship(re.getToPerson(), re.getFromPerson(),
                     RelationshipDirection.DIRECTED);
-            removeRelationship(directlyOppoRelationship);
+            if (reList.contains(directlyOppoRelationship)) {
+                throw new DuplicateRelationshipException();
+            }
         }
         reList.add(re);
-
-        return true;
     }
 
-    //@@author wenmogu
     /**
      * Removes a relationship from a person's relationships
      */
@@ -247,4 +247,22 @@ public class Person implements ReadOnlyPerson {
         return getAsText();
     }
 
+    @Override
+    public int compareTo(Person o) {
+        return this.getName().toString().compareToIgnoreCase(o.getName().toString());
+    }
+
+    /**
+     * Used in debugging to print out the relationshipList of this person
+     */
+    public void printRelationshipList() {
+        String border = "-----------------------------------------------------" + "\n";
+        String intro = "Intro: " + this.toString() + "\n";
+        String relationshipStr = "";
+        Set<Relationship> relationships = this.getRelationships();
+        for (Relationship relationship: relationships) {
+            relationshipStr = relationshipStr + relationship.toString() + "\n";
+        }
+        LogsCenter.getLogger(Person.class).fine(border + intro + relationshipStr + border);
+    }
 }
