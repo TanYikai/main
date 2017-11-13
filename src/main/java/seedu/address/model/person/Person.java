@@ -11,8 +11,8 @@ import java.util.Set;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import seedu.address.logic.parser.ParserUtil.Option;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.parser.ParserUtil.Option;
 import seedu.address.model.relationship.Relationship;
 import seedu.address.model.relationship.RelationshipDirection;
 import seedu.address.model.relationship.UniqueRelationshipList;
@@ -245,11 +245,6 @@ public class Person implements ReadOnlyPerson {
     @Override
     public String toString() {
         return getAsText();
-    }
-
-    @Override
-    public int compareTo(Person o) {
-        return this.getName().toString().compareToIgnoreCase(o.getName().toString());
     }
 
     /**
