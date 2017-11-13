@@ -366,6 +366,40 @@ This command is implemented in the style of the `edit` command and `delete` comm
 **Cons:** Implementation is more difficult as parsing of additional user input required. It is also unlikely for user to remove the tag from many persons at once, hence there is a function overlap with `edit` command.
 // end::removetag[]
 
+// tag::relPath[]
+=== `relPath` command mechanism
+
+`relPath` finds a shortest relationship path between two people that has the highest minimum confidence estimate, and highlights this path on the graph display. In other words, it prioritises relationships with a higher confidence level over those with lower confidence levels when deciding the shortest path.
+
+To do so, a modifiied version of the standard Dijkstra's shortest path algorithm is used, which takes into account path _width_ (the smallest confidence estimate on the path) and selects edges that maximises the minimum width of the path. The algorithm can be briefly described as follows:
+
+1. For all persons from the source person, set the path width to them at -Infinity.
+2. Keep track of the width of the path to each person from the source.
+3. At each iteration, take the person with the smallest width so far and consider its outgoing edges. Add an edge into the shortest path to this person if it will increase the minimum confidence estimate of the path.
+4. When all persons are processed, all shortest paths with the highest minimum confidence estimate will be found.
+
+==== Design Considerations
+
+**Aspect:** Implementation of modified Dijkstra's +
+**Alternative 1 (current choice):** Extend the current `Dijkstra` algorithm in the GraphStream library. +
+**Pros:** Easy to implement since most of the algorithm is the same, easy to use with graph display. +
+**Cons:** Relies on external library for correctness, unable to guarantee correctness of external library.  +
+**Alternative 2:** Implement modified Dijkstra's from scratch. +
+**Pros:** Can ensure testablity and reliablity of own code, less reliance on external correctness. +
+**Cons:** More difficult implementation as it is from scratch, less compatability with graph display means integration between display and algorithm has to be manually written.
+
+---
+
+**Aspect:** Access to `GraphWrapper` from `RelPathCommand` +
+**Alternative 1 (current choice):** Make `GraphWrapper` a Singleton. +
+**Pros:** Easy to access from `relPathCommand`, no need to modify all commands like if `setData()` was extended. +
+**Cons:** Increases global state.  +
+**Alternative 2:** Extend `Command.setData()` to take in `GraphWrapper` +
+**Pros:** Similar to how other components are allowed to interact with commands, better consistency. +
+**Cons:** Since the graph display is a GUI component, no straightforward way to have `Command` access it. Also means that every command's `setData()` has to be modified to take into account an external parameter.
+
+// end::relPath[]
+
 // tag::find[]
 === Enhanced `find` command
 
