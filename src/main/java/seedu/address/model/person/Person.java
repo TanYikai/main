@@ -33,7 +33,6 @@ public class Person implements ReadOnlyPerson {
 
     private ObjectProperty<UniqueTagList> tags;
     private ObjectProperty<UniqueRelationshipList> relationships;
-    
     //@@ author wenmogu
     /**
      * Every field must be present and not null.
