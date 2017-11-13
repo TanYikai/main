@@ -507,7 +507,7 @@ A separate parser for phone, email, address and remark are used to accommodate t
 // end::EnhancedAddCommand[]
 
 // tag::clearHistory[]
-=== `clearHistory` command
+=== `clearHistory` command mechanism
 
 The `clearHistory` command is implemented as a regular command that calls `.clear()` methods added to `CommandHistory` and `UndoRedoStack`, which clears the command history and the undo/redo stack respectively.
 
